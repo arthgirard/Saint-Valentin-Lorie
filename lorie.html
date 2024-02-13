@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Heart Background</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #FFEBEB;
+      font-size: 24px;
+      line-height: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transition: background 1s ease-in-out;
+    }
+
+    .heart {
+      color: #FFC0CB;
+      font-size: 24px;
+      line-height: 24px;
+      animation: bounce 3s ease-in-out infinite alternate;
+      cursor: pointer;
+      transition: all 1s ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+    }
+
+    .fade-in-text {
+      display: none;
+      position: absolute;
+      text-align: center;
+      font-size: 24px;
+      color: #000;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart" id="heart" onclick="animateHeart()">♥</div>
+  <div class="fade-in-text" id="valentineText">Veux-tu être ma valentine Lorie?</div>
+
+  <script>
+    var clickCount = 0;
+
+    function animateHeart() {
+      var heart = document.getElementById('heart');
+      var valentineText = document.getElementById('valentineText');
+
+      // Increase the size of the heart
+      var newSize = parseInt(window.getComputedStyle(heart).fontSize) * 3;
+
+      // Increment click count
+      clickCount++;
+
+      // Set the new size and center the heart
+      heart.style.fontSize = newSize + 'px';
+      centerHeart(heart);
+
+      // After the fifth click, wait for 3 seconds, change background, remove the heart, and show the text
+      if (clickCount === 5) {
+        setTimeout(function() {
+          document.body.style.background = '#FFC0CB';
+          heart.remove();
+          valentineText.style.display = 'block';
+        }, 3000);
+      }
+    }
+
+    // Function to center the heart
+    function centerHeart(heart) {
+      var offsetX = window.innerWidth / 2 - heart.offsetWidth / 2;
+      var offsetY = window.innerHeight / 2 - heart.offsetHeight / 2;
+      heart.style.left = offsetX + 'px';
+      heart.style.top = offsetY + 'px';
+    }
+  </script>
+  
+</body>
+</html>
