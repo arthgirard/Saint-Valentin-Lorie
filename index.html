@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Heart Background</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+  <title>❤</title>
   <style>
     body {
       margin: 0;
@@ -43,7 +44,9 @@
       position: absolute;
       text-align: center;
       font-size: 24px;
-      color: #000;
+      font-weight: 500;
+      font-family: 'Montserrat', sans-serif;
+      color: #d1468b;
       animation: fadeIn 2s ease-in-out;
     }
 
@@ -55,11 +58,46 @@
         opacity: 1;
       }
     }
+
+    /* Style for the buttons initially hidden */
+    #buttonsContainer {
+      display: none;
+      margin-top: 80px; /* Increased margin to lower the buttons */
+    }
+
+    .button {
+      padding: 15px; /* Increased padding for better separation */
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 15px;
+      font-weight: 400;
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 25px; /* Increased margin for better separation */
+      width: 120px;
+    }
+
+    #ouiButton {
+      background-color: #d1468b;
+      color: white;
+    }
+
+    #nonButton {
+      background-color: #d1468b;
+      color: white;
+      margin-left: 10px; /* Added margin to separate buttons */
+    }
   </style>
 </head>
 <body>
-  <div class="heart" id="heart" onclick="animateHeart()">♥</div>
-  <div class="fade-in-text" id="valentineText">Veux-tu être ma valentine Lorie?</div>
+  <div class="heart" id="heart" onclick="animateHeart()">❤</div>
+  <div class="fade-in-text" id="valentineText">Veux-tu être ma valentine? :D</div>
+
+  <!-- Buttons for "Oui" and "Non" initially hidden -->
+  <div id="buttonsContainer">
+    <button id="ouiButton" class="button" onclick="handleButtonClick('Oui')">Oui</button>
+    <button id="nonButton" class="button" onclick="handleButtonClick('Non')">Non</button>
+  </div>
 
   <script>
     var clickCount = 0;
@@ -67,6 +105,7 @@
     function animateHeart() {
       var heart = document.getElementById('heart');
       var valentineText = document.getElementById('valentineText');
+      var buttonsContainer = document.getElementById('buttonsContainer');
 
       // Increase the size of the heart
       var newSize = parseInt(window.getComputedStyle(heart).fontSize) * 3;
@@ -78,12 +117,13 @@
       heart.style.fontSize = newSize + 'px';
       centerHeart(heart);
 
-      // After the fifth click, wait for 3 seconds, change background, remove the heart, and show the text
+      // After the fifth click, wait for 3 seconds, change background, remove the heart, and show the text and buttons
       if (clickCount === 5) {
         setTimeout(function() {
           document.body.style.background = '#FFC0CB';
           heart.remove();
           valentineText.style.display = 'block';
+          buttonsContainer.style.display = 'flex';
         }, 3000);
       }
     }
@@ -95,7 +135,12 @@
       heart.style.left = offsetX + 'px';
       heart.style.top = offsetY + 'px';
     }
+
+    // Handle button click logic
+    function handleButtonClick(choice) {
+      // You can add your logic here based on the button clicked
+      console.log(choice);
+    }
   </script>
-  
 </body>
 </html>
