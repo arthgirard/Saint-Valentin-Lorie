@@ -40,15 +40,17 @@
     }
 
     .fade-in-text {
-      display: none;
-      position: absolute;
-      text-align: center;
-      font-size: 24px;
-      font-weight: 500;
-      font-family: 'Montserrat', sans-serif;
-      color: #d1468b;
-      animation: fadeIn 2s ease-in-out;
-    }
+  display: none;
+  position: absolute;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  color: #d1468b;
+  animation: fadeIn 2s ease-in-out;
+  margin-bottom: 25px; /* Add margin to the bottom to prevent overlap with buttons */
+}
+
 
     @keyframes fadeIn {
       from {
@@ -62,18 +64,19 @@
     /* Style for the buttons initially hidden */
     #buttonsContainer {
       display: none;
-      margin-top: 80px; /* Increased margin to lower the buttons */
+      margin-top: 40px; /* Adjusted margin to center buttons more */
+      text-align: center; /* Center text in the container */
     }
 
     .button {
-      padding: 15px; /* Increased padding for better separation */
+      padding: 15px;
       font-size: 16px;
       cursor: pointer;
       border: none;
       border-radius: 15px;
       font-weight: 400;
       font-family: 'Montserrat', sans-serif;
-      margin-top: 25px; /* Increased margin for better separation */
+      margin-top: 25px;
       width: 120px;
     }
 
@@ -85,7 +88,7 @@
     #nonButton {
       background-color: #d1468b;
       color: white;
-      margin-left: 10px; /* Added margin to separate buttons */
+      margin-left: 10px;
     }
   </style>
 </head>
@@ -144,3 +147,5 @@
   </script>
 </body>
 </html>
+
+
