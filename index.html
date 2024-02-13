@@ -50,7 +50,7 @@
             font-size: 24px;
             font-weight: 500;
             font-family: 'Montserrat', sans-serif;
-            color: #d1468b;
+            color: #db72a6;
             animation: fadeIn 2s ease-in-out;
             margin-bottom: 35px;
             /* Add margin to the bottom to prevent overlap with buttons */
@@ -105,16 +105,16 @@
             font-family: 'Montserrat', sans-serif;
             animation: fadeIn 2s ease-in-out;
             margin-top: 25px;
-            width: 120px;
+            width: 100px;
         }
 
         #ouiButton {
-            background-color: #d1468b;
+            background-color: #ff83c1;
             color: white;
         }
 
         #nonButton {
-            background-color: #d1468b;
+            background-color: #ff83c1;
             color: white;
             margin-left: 10px;
         }
@@ -133,6 +133,7 @@
 
     <script>
         var clickCount = 0;
+        var nonTextInterval;
 
         function animateHeart() {
             var heart = document.getElementById('heart');
@@ -168,7 +169,6 @@
             heart.style.top = offsetY + 'px';
         }
 
-        // Handle button click logic
         function handleButtonClick(choice) {
             if (choice === 'non') {
                 document.body.style.background = 'black';
@@ -183,7 +183,7 @@
                     document.body.appendChild(whatText);
 
                     // After another 2 seconds, start displaying "non?" in dark red in a loop
-                    setInterval(function () {
+                    nonTextInterval = setInterval(function () {
                         var nonText = document.createElement('div');
                         nonText.className = 'non-text';
                         nonText.style.color = '#8B0000'; // Dark red color
@@ -191,10 +191,25 @@
                         document.body.appendChild(nonText);
                         setRandomPosition(nonText);
                     }, 100);
+
+                    // Set a timeout to clear the entire body content after 5 seconds
+                    setTimeout(function () {
+                        clearInterval(nonTextInterval);
+                        document.body.innerHTML = ''; // Clear the entire body content
+                        var trisText = document.createElement('div');
+                        trisText.className = 'what-text';
+                        trisText.innerText = 'je suis tout tris ;(';
+                        document.body.appendChild(trisText);
+                    }, 8000);
+
                 }, 4000);
             } else {
-                // You can add your logic here based on the "Oui" button clicked
-                console.log(choice);
+                document.body.innerHTML = ''; // Clear the entire body content
+                var youpiText = document.createElement('div');
+                        youpiText.className = 'what-text';
+                        youpiText.innerText = "YOUPI!! JOYEUSE SAINT-VALENTIN MON COEUR\n JE T'AIME!!!";
+                        youpiText.color = '#db72a6';
+                        document.body.appendChild(youpiText);
             }
         }
 
