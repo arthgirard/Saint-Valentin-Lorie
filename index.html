@@ -67,6 +67,14 @@
             /* Add margin to the bottom to prevent overlap with buttons */
         }
 
+        .non-text {
+            position: absolute;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 25px;
+            /* Add margin to the bottom to prevent overlap with buttons */
+        }
+
 
         @keyframes fadeIn {
             from {
@@ -95,6 +103,7 @@
             border-radius: 15px;
             font-weight: 400;
             font-family: 'Montserrat', sans-serif;
+            animation: fadeIn 2s ease-in-out;
             margin-top: 25px;
             width: 120px;
         }
@@ -113,13 +122,13 @@
 </head>
 
 <body>
-    <div class="heart" id="heart" onclick="animateHeart()">&#10084</div>
-    <div class="fade-in-text" id="valentineText">Veux-tu être ma valentine? :D</div>
+    <div class="heart" id="heart" onclick="animateHeart()">&#10084&#xFE0E</div>
+    <div class="fade-in-text" id="valentineText">veux-tu être ma valentine? :D</div>
 
     <!-- Buttons for "Oui" and "Non" initially hidden -->
     <div id="buttonsContainer">
-        <button id="ouiButton" class="button" onclick="handleButtonClick('Oui')">Oui</button>
-        <button id="nonButton" class="button" onclick="handleButtonClick('Non')">Non</button>
+        <button id="ouiButton" class="button" onclick="handleButtonClick('oui')">oui</button>
+        <button id="nonButton" class="button" onclick="handleButtonClick('non')">non</button>
     </div>
 
     <script>
@@ -131,7 +140,7 @@
             var buttonsContainer = document.getElementById('buttonsContainer');
 
             // Increase the size of the heart
-            var newSize = parseInt(window.getComputedStyle(heart).fontSize) * 3;
+            var newSize = parseInt(window.getComputedStyle(heart).fontSize) * 4;
 
             // Increment click count
             clickCount++;
@@ -140,14 +149,14 @@
             heart.style.fontSize = newSize + 'px';
             centerHeart(heart);
 
-            // After the fifth click, wait for 3 seconds, change background, remove the heart, and show the text and buttons
-            if (clickCount === 5) {
+            // After the fourth click, wait for 2 seconds, change background, remove the heart, and show the text and buttons
+            if (clickCount === 4) {
                 setTimeout(function () {
                     document.body.style.background = '#FFC0CB';
                     heart.remove();
                     valentineText.style.display = 'block';
                     buttonsContainer.style.display = 'flex';
-                }, 3000);
+                }, 2000);
             }
         }
 
@@ -161,9 +170,10 @@
 
         // Handle button click logic
         function handleButtonClick(choice) {
-            if (choice === 'Non') {
+            if (choice === 'non') {
                 document.body.style.background = 'black';
                 document.body.innerHTML = ''; // Clear the entire body content
+                document.title = '??????';
 
                 setTimeout(function () {
                     // After 2 seconds, display the "what" message in white text
@@ -171,13 +181,36 @@
                     whatText.className = 'what-text';
                     whatText.innerText = 'what';
                     document.body.appendChild(whatText);
-                    document.title = '??????'
+
+                    // After another 2 seconds, start displaying "non?" in dark red in a loop
+                    setInterval(function () {
+                        var nonText = document.createElement('div');
+                        nonText.className = 'non-text';
+                        nonText.style.color = '#8B0000'; // Dark red color
+                        nonText.innerText = 'non?';
+                        document.body.appendChild(nonText);
+                        setRandomPosition(nonText);
+                    }, 100);
                 }, 4000);
             } else {
                 // You can add your logic here based on the "Oui" button clicked
                 console.log(choice);
             }
         }
+
+        // Function to set random position for an element
+        function setRandomPosition(element) {
+            var maxX = window.innerWidth - element.offsetWidth;
+            var maxY = window.innerHeight - element.offsetHeight;
+            var randomX = Math.floor(Math.random() * maxX);
+            var randomY = Math.floor(Math.random() * maxY);
+
+            element.style.position = 'absolute';
+            element.style.left = randomX + 'px';
+            element.style.top = randomY + 'px';
+        }
+
+
     </script>
 
 
