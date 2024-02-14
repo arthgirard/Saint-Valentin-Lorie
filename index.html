@@ -117,6 +117,7 @@
             color: white;
             margin-left: 10px;
         }
+        
     </style>
 </head>
 
@@ -216,17 +217,16 @@
             } else {
                 document.body.innerHTML = ''; // Clear the entire body content
                 var youpiContainer = document.createElement('div');
-                youpiContainer.style.position = 'relative'; // Set position to relative for absolute positioning of the button
-                youpiContainer.style.width = '225px'; // Set the width of the container
+                youpiContainer.style.position = 'absolute'; // Set position to relative for absolute positioning of the button
+                youpiContainer.style.width = '285px'; // Set the width of the container
                 youpiContainer.style.height = '150px'; // Set the height of the container
                 document.body.appendChild(youpiContainer);
 
                 var youpiText = document.createElement('div');
                 youpiText.className = 'what-text';
-                youpiText.innerText = "YOUPIDOU HIHI";
+                youpiText.innerText = "COMME JE T'AIME TOI";
                 youpiText.style.color = '#db72a6';
                 youpiText.style.fontWeight = 800;
-                youpiText.style.textAlign = "center";
                 youpiContainer.appendChild(youpiText);
 
                 // Create and append the button
@@ -265,8 +265,23 @@
                 }, 2000);
                 // Add event listener to youpiButton
                 youpiButton.addEventListener('click', function () {
-                    // Open the desired URL in a new tab
-                    window.open('', '_blank');
+                    // Create and append the iframe element
+                    var iframe = document.createElement('iframe');
+                    iframe.src = "https://drive.google.com/file/d/1migH2C_JmyZicBpgGsyiuBLbCeUfsRlv/preview";
+                    iframe.width = "100%";
+                    iframe.height = "100%";
+                    iframe.allow = "autoplay";
+
+                    // Set styles to make the iframe cover the full screen
+                    iframe.style.position = 'fixed';
+                    iframe.style.top = '0';
+                    iframe.style.left = '0';
+                    iframe.style.width = '100%';
+                    iframe.style.height = '100%';
+                    iframe.style.border = 'none'; // Optional: remove border if needed
+
+                    // Append the iframe to the body
+                    document.body.appendChild(iframe);
                 });
             }
         }
