@@ -63,7 +63,6 @@
             font-weight: 8500;
             font-family: 'Montserrat', sans-serif;
             color: #ffffff;
-            margin-bottom: 25px;
             /* Add margin to the bottom to prevent overlap with buttons */
         }
 
@@ -157,7 +156,7 @@
                     heart.remove();
                     valentineText.style.display = 'block';
                     buttonsContainer.style.display = 'flex';
-                }, 2000);
+                }, 1000);
             }
         }
 
@@ -205,13 +204,61 @@
                 }, 4000);
             } else {
                 document.body.innerHTML = ''; // Clear the entire body content
+                var youpiContainer = document.createElement('div');
+                youpiContainer.style.position = 'relative'; // Set position to relative for absolute positioning of the button
+                youpiContainer.style.width = '500px'; // Set the width of the container
+                youpiContainer.style.height = '150px'; // Set the height of the container
+                document.body.appendChild(youpiContainer);
+
                 var youpiText = document.createElement('div');
-                        youpiText.className = 'what-text';
-                        youpiText.innerText = "YOUPI!! JOYEUSE SAINT-VALENTIN MON COEUR\n JE T'AIME!!!";
-                        youpiText.color = '#db72a6';
-                        document.body.appendChild(youpiText);
+                youpiText.className = 'what-text';
+                youpiText.innerText = "YOUPI!!\n JOYEUSE SAINT-VALENTIN MON COEUR\n JE T'AIME!!";
+                youpiText.style.color = '#db72a6';
+                youpiText.style.fontWeight = 800;
+                youpiContainer.appendChild(youpiText);
+
+                // Create and append the button
+                var youpiButton = document.createElement('button');
+                youpiButton.innerText = 'CLIQUE';
+                youpiButton.className = 'button';
+                youpiButton.style.display = "none";
+                youpiButton.style.opacity = '0'; // Initially set opacity to 0 for the fade-in effect
+                youpiButton.style.backgroundColor = "#db72a6"
+                youpiButton.style.color = "#ffffff"
+                youpiButton.style.marginLeft = "auto"; // Center the button horizontally
+                youpiButton.style.marginRight = "auto"; // Center the button horizontally
+                youpiButton.style.marginTop = "50px"
+                youpiButton.style.fontSize = "20px"
+                youpiButton.style.textAlign = "center"; // Center text within the button
+
+                // Center the text both horizontally and vertically within the button
+                youpiButton.style.alignItems = "center";
+                youpiButton.style.justifyContent = "center";
+
+                youpiContainer.appendChild(youpiButton);
+
+
+
+                // Move the youpiText up and fade-in the button after the youpiText transformation
+                setTimeout(function () {
+                    youpiText.style.transition = 'transform 1s ease-in-out';
+                    youpiText.style.transform = 'translateY(-32.5px)';
+
+                    // Set a delay before showing the button after the youpiText transformation
+                    setTimeout(function () {
+                        youpiButton.style.display = "flex";
+                        youpiButton.style.transition = 'opacity .5s ease-in-out';
+                        youpiButton.style.opacity = '1';
+                    }, 1000); // Adjust the delay time as needed
+                }, 2000);
+                // Add event listener to youpiButton
+                youpiButton.addEventListener('click', function () {
+                    // Open the desired URL in a new tab
+                    window.open('https://gemootest.s3.us-east-2.amazonaws.com/s/res/616215377478873088/0ae94b118c868058377d0c9e8a14bbc6.mp4?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARLZICB6QQHKRCV7K%2F20240214%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240214T022014Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Signature=1a93720a9a26d5c849baede6bc1d1356fcc3e2d63104711030a3100d8e82c042', '_blank');
+                });
             }
         }
+
 
         // Function to set random position for an element
         function setRandomPosition(element) {
